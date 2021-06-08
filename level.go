@@ -18,7 +18,6 @@ import (
 // Storage composition of Database interface
 type Storage struct {
 	Path            string
-	mem             sync.Map
 	noBroadcastKeys []string
 	client          *leveldb.DB
 	mutex           sync.RWMutex
@@ -384,7 +383,7 @@ func (db *Storage) Set(path string, data string) (string, error) {
 		return "", err
 	}
 
-	if !key.Contains(db.noBroadcastKeys, path) {
+	if !key.Contains(db.noBroadcastKeys, path) && db.Active() {
 		db.watcher <- katamari.StorageEvent{Key: path, Operation: "set"}
 	}
 	return index, nil
@@ -406,7 +405,7 @@ func (db *Storage) Pivot(path string, data string, created int64, updated int64)
 		return "", err
 	}
 
-	if !key.Contains(db.noBroadcastKeys, path) {
+	if !key.Contains(db.noBroadcastKeys, path) && db.Active() {
 		db.watcher <- katamari.StorageEvent{Key: path, Operation: "set"}
 	}
 	return index, nil
@@ -430,7 +429,7 @@ func (db *Storage) Del(path string) error {
 			return err
 		}
 
-		if !key.Contains(db.noBroadcastKeys, path) {
+		if !key.Contains(db.noBroadcastKeys, path) && db.Active() {
 			db.watcher <- katamari.StorageEvent{Key: path, Operation: "del"}
 		}
 		return nil
@@ -459,7 +458,7 @@ func (db *Storage) Del(path string) error {
 		return err
 	}
 
-	if !key.Contains(db.noBroadcastKeys, path) {
+	if !key.Contains(db.noBroadcastKeys, path) && db.Active() {
 		db.watcher <- katamari.StorageEvent{Key: path, Operation: "del"}
 	}
 	return nil
