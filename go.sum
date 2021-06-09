@@ -12,6 +12,8 @@ github.com/benitogf/katamari v0.0.0-20210319080900-6fc5d277bd9f h1:gApylTybTM/s/
 github.com/benitogf/katamari v0.0.0-20210319080900-6fc5d277bd9f/go.mod h1:GbqR1boBoMLVEAPbtGn1P+OGUhPNQRa6Cgt1T94z9RI=
 github.com/benitogf/katamari v0.0.0-20210609041512-ea6b24ad129c h1:Pl5uSanBpt3Y7Bll4cFOXMNWPnjx1rbRN7h3STcQ8z0=
 github.com/benitogf/katamari v0.0.0-20210609041512-ea6b24ad129c/go.mod h1:GbqR1boBoMLVEAPbtGn1P+OGUhPNQRa6Cgt1T94z9RI=
+github.com/benitogf/katamari v0.0.0-20210609042642-ac908da81479 h1:IYRex8qW8AZRTEYr2+Exe/ryGCclIQl1ncMllAHgVws=
+github.com/benitogf/katamari v0.0.0-20210609042642-ac908da81479/go.mod h1:GbqR1boBoMLVEAPbtGn1P+OGUhPNQRa6Cgt1T94z9RI=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
