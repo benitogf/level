@@ -24,6 +24,7 @@ var units = []string{
 }
 
 func TestStorageLeveldb(t *testing.T) {
+	// https://github.com/golang/go/issues/22553
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
