@@ -2,6 +2,7 @@ package level
 
 import (
 	"os"
+	"runtime"
 	"testing"
 
 	"github.com/benitogf/katamari"
@@ -23,7 +24,9 @@ var units = []string{
 }
 
 func TestStorageLeveldb(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
 	app.Storage = &Storage{Path: "test/db"}
@@ -36,7 +39,9 @@ func TestStorageLeveldb(t *testing.T) {
 }
 
 func TestStreamBroadcastLevel(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
@@ -48,7 +53,9 @@ func TestStreamBroadcastLevel(t *testing.T) {
 }
 
 func TestStreamGlobBroadcastLevel(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
@@ -60,7 +67,9 @@ func TestStreamGlobBroadcastLevel(t *testing.T) {
 }
 
 func TestStreamBroadcastFilter(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
@@ -70,7 +79,9 @@ func TestStreamBroadcastFilter(t *testing.T) {
 }
 
 func TestGetN(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
 	app.Start("localhost:0")
@@ -79,7 +90,9 @@ func TestGetN(t *testing.T) {
 }
 
 func TestGetNRange(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
 	app.Start("localhost:0")
@@ -88,7 +101,9 @@ func TestGetNRange(t *testing.T) {
 }
 
 func TestKeysRange(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
 	app.Storage = &Storage{Path: "test/db4" + katamari.Time()}
@@ -98,7 +113,9 @@ func TestKeysRange(t *testing.T) {
 }
 
 func TestStreamItemGlobBroadcastLevel(t *testing.T) {
-	t.Parallel()
+	if runtime.GOOS != "windows" {
+		t.Parallel()
+	}
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
