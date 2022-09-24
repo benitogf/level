@@ -83,6 +83,9 @@ func TestGetN(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
 	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
@@ -94,6 +97,9 @@ func TestGetN(t *testing.T) {
 func TestGetNRange(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
+	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
 	}
 	app := &katamari.Server{}
 	app.Silence = true
