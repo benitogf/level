@@ -64,7 +64,7 @@ func TestStreamGlobBroadcastLevel(t *testing.T) {
 	app.Start("localhost:0")
 	app.Storage.Clear()
 	defer app.Close(os.Interrupt)
-	katamari.StreamGlobBroadcastTest(t, &app, 10)
+	katamari.StreamGlobBroadcastTest(t, &app, 2)
 }
 
 func TestStreamBroadcastFilter(t *testing.T) {
@@ -91,7 +91,7 @@ func TestGetN(t *testing.T) {
 	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageGetNTest(app, t, 10)
+	katamari.StorageGetNTest(app, t, 3)
 }
 
 func TestGetNRange(t *testing.T) {
@@ -106,19 +106,22 @@ func TestGetNRange(t *testing.T) {
 	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageGetNRangeTest(app, t, 10)
+	katamari.StorageGetNRangeTest(app, t, 3)
 }
 
 func TestKeysRange(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
 	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageKeysRangeTest(app, t, 10)
+	katamari.StorageKeysRangeTest(app, t, 3)
 }
 
 func TestStreamItemGlobBroadcastLevel(t *testing.T) {
