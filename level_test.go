@@ -71,6 +71,9 @@ func TestStreamBroadcastFilter(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
