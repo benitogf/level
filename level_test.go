@@ -30,7 +30,7 @@ func TestStorageLeveldb(t *testing.T) {
 	}
 	app := &katamari.Server{}
 	app.Silence = true
-	app.Storage = &Storage{Path: "test/db"}
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
 	for i := range units {
@@ -46,7 +46,7 @@ func TestStreamBroadcastLevel(t *testing.T) {
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
-	app.Storage = &Storage{Path: "test/db1" + katamari.Time()}
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	app.Storage.Clear()
 	defer app.Close(os.Interrupt)
@@ -60,21 +60,24 @@ func TestStreamGlobBroadcastLevel(t *testing.T) {
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
-	app.Storage = &Storage{Path: "test/db2" + katamari.Time()}
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	app.Storage.Clear()
 	defer app.Close(os.Interrupt)
-	katamari.StreamGlobBroadcastTest(t, &app)
+	katamari.StreamGlobBroadcastTest(t, &app, 2)
 }
 
 func TestStreamBroadcastFilter(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
-	app.Storage = &Storage{Path: "test/db3" + katamari.Time()}
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	defer app.Close(os.Interrupt)
 	katamari.StreamBroadcastFilterTest(t, &app)
 }
@@ -83,34 +86,45 @@ func TestGetN(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageGetNTest(app, t, 20)
+	katamari.StorageGetNTest(app, t, 3)
 }
 
 func TestGetNRange(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageGetNRangeTest(app, t, 20)
+	katamari.StorageGetNRangeTest(app, t, 3)
 }
 
 func TestKeysRange(t *testing.T) {
 	if runtime.GOOS != "windows" {
 		t.Parallel()
 	}
+	if runtime.GOOS == "windows" {
+		t.Skip()
+	}
 	app := &katamari.Server{}
 	app.Silence = true
-	app.Storage = &Storage{Path: "test/db4" + katamari.Time()}
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageKeysRangeTest(app, t, 20)
+	katamari.StorageKeysRangeTest(app, t, 3)
 }
 
 func TestStreamItemGlobBroadcastLevel(t *testing.T) {
@@ -120,7 +134,7 @@ func TestStreamItemGlobBroadcastLevel(t *testing.T) {
 	app := katamari.Server{}
 	app.Silence = true
 	app.ForcePatch = true
-	app.Storage = &Storage{Path: "test/db5" + katamari.Time()}
+	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	app.Storage.Clear()
 	defer app.Close(os.Interrupt)
