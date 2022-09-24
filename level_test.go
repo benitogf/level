@@ -100,7 +100,7 @@ func TestGetNRange(t *testing.T) {
 	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageGetNRangeTest(app, t, 100)
+	katamari.StorageGetNRangeTest(app, t, 10)
 }
 
 func TestKeysRange(t *testing.T) {
@@ -112,7 +112,7 @@ func TestKeysRange(t *testing.T) {
 	app.Storage = &Storage{Path: "test/db" + katamari.Time()}
 	app.Start("localhost:0")
 	defer app.Close(os.Interrupt)
-	katamari.StorageKeysRangeTest(app, t, 100)
+	katamari.StorageKeysRangeTest(app, t, 10)
 }
 
 func TestStreamItemGlobBroadcastLevel(t *testing.T) {
